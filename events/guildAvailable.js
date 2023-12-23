@@ -15,10 +15,7 @@ module.exports = {
     // init odic client
     await yahooOidc.init();
 
-    // init database
-    await initDb();
-
-    // seed cache when authenticated
+    // seed cache
     const authentication = await getAuthentication();
     if (authentication != null) {
       cache[YAHOO_ACCESS_TOKEN] = authentication.encrypted_token;

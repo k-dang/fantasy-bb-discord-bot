@@ -8,7 +8,6 @@ const { query } = require('./index');
  */
 const upsertLeague = async (guildId, leagueKey) => {
   try {
-    await query('BEGIN');
     const upsertQuery = `
     INSERT INTO public."League" (guild_id, league_key, created_at, updated_at)
     VALUES ($1, $2, $3, $4)
@@ -17,12 +16,11 @@ const upsertLeague = async (guildId, leagueKey) => {
     RETURNING *`;
 
     const values = [guildId, leagueKey, new Date().toISOString(), new Date().toISOString()];
+
     const res = await query(upsertQuery, values);
-    await query('COMMIT');
     return res.rows[0];
   } catch (e) {
     console.log(e);
-    await query('ROLLBACK');
     throw e;
   }
 };

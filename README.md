@@ -1,5 +1,7 @@
 # fantasy-bb-discord-bot
 
+Discord bot that connects to Yahoo Fantasy Basketball APIs to display stats
+
 ## Local dev setup
 
 Setup `.env` file

@@ -8,7 +8,6 @@ const { query } = require('./index');
  */
 const upsertAuthentication = async (encryptedToken, encryptedRefreshToken) => {
   try {
-    await query('BEGIN');
     const upsertQuery = `
     INSERT INTO public."Authentication" (user_id, encrypted_token, encrypted_refresh_token, created_at, updated_at) 
     VALUES ($1, $2, $3, $4, $5)
@@ -25,10 +24,9 @@ const upsertAuthentication = async (encryptedToken, encryptedRefreshToken) => {
     ];
 
     const res = await query(upsertQuery, values);
-    await query('COMMIT');
     return res.rows[0];
   } catch (e) {
-    await query('ROLLBACK');
+    console.log(e);
     throw e;
   }
 };
