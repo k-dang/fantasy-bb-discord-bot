@@ -74,7 +74,10 @@ module.exports = {
 
         body.push(formatWeeklyStatsRow(weekRow));
       }
-      const header = formatWeeklyStatsHeader(['WEEK', ...Object.values(statCategories)]);
+      const header =
+        `${selectedTeam.teamName} \n` +
+        `======================== \n` +
+        formatWeeklyStatsHeader(['WEEK', ...Object.values(statCategories)]);
       const message = header + '\n' + body.join('\n');
 
       await interaction.followUp(codeBlock(message));
