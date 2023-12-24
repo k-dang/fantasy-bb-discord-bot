@@ -11,7 +11,7 @@ class YahooOidcAuthClient {
     const client = new yahooIssuer.Client({
       client_id:
         'dj0yJmk9dHVabktSeVpldzFxJmQ9WVdrOVlrRlBTRmRqV0c4bWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWM2',
-      client_secret: 'e883d53162ee143056def8edb31429c9c124cfed',
+      client_secret: process.env.YAHOO_CLIENT_SECRET,
       redirect_uris: [`${redirectUrl}/api/callback`],
       response_types: ['code'],
       id_token_signed_response_alg: 'ES256',
